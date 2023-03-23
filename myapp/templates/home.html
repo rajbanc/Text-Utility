@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+   <h1>Welcome to Textutils</h1><br>
+    <button><a href="{% url 'login' %}">Log In</a></button><br></br>
+    
+    <button><a href="{% url 'register' %}">Register</a></button>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+{% endblock %}
