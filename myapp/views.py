@@ -3,8 +3,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth import forms
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,PasswordResetForm
 from .forms import  EditProfileForm,ChangePasswordForm
+
 
 # Create your views here.
 
@@ -88,7 +89,6 @@ def change_password(request):
         'form': form,
     }
     return render(request, 'authenticate/change_password.html', context)
-
 
 def home(request):
     return render(request,'base.html')
