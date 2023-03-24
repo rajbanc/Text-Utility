@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,4 +129,13 @@ LOGIN_REDIRECT_URL = "/index"
 LOGOUT_REDIRECT_URL = "/"
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL Related
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+# EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'dev.ai2@ramlaxmangroup.com'
+EMAIL_HOST_PASSWORD = 'Techai@#$0609'
+DEFAULT_FROM_EMAIL = 'dev.ai2@ramlaxmangroup.com'
