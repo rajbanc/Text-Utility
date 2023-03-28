@@ -4,19 +4,22 @@ from django.contrib.auth import login, logout, authenticate, update_session_auth
 from django.contrib.auth import forms
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm,PasswordResetForm
-from .forms import  EditProfileForm,ChangePasswordForm
+from .forms import  EditProfileForm,ChangePasswordForm,SignUpform
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+
 
 
 # Create your views here.
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpform(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(request, username=username, password=password)
+            email = form.cleaned_data['email']
+            user = authenticate(request, username=username, password=password,email = email)
             login(request, user)
             return redirect('home')
         else:
@@ -89,6 +92,8 @@ def change_password(request):
         'form': form,
     }
     return render(request, 'authenticate/change_password.html', context)
+
+
 
 def home(request):
     return render(request,'base.html')
